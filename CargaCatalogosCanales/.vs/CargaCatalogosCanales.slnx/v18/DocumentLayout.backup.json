@@ -3,20 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\alexi\\Documents\\GitHub\\Catalogo_analistaI\\CargaCatalogosCanales\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{06E1EBBF-E800-4C4D-0F34-201068161946}|CargaCatalogosCanales\\CargaCatalogosCanales.csproj|c:\\users\\alexi\\documents\\github\\catalogo_analistai\\cargacatalogoscanales\\cargacatalogoscanales\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{06E1EBBF-E800-4C4D-0F34-201068161946}|CargaCatalogosCanales\\CargaCatalogosCanales.csproj|solutionrelative:cargacatalogoscanales\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{06E1EBBF-E800-4C4D-0F34-201068161946}|CargaCatalogosCanales\\CargaCatalogosCanales.csproj|C:\\Users\\alexi\\Documents\\GitHub\\Catalogo_analistaI\\CargaCatalogosCanales\\cargacatalogoscanales\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{06E1EBBF-E800-4C4D-0F34-201068161946}|CargaCatalogosCanales\\CargaCatalogosCanales.csproj|solutionrelative:cargacatalogoscanales\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{06E1EBBF-E800-4C4D-0F34-201068161946}|CargaCatalogosCanales\\CargaCatalogosCanales.csproj|c:\\users\\alexi\\documents\\github\\catalogo_analistai\\cargacatalogoscanales\\cargacatalogoscanales\\cargacatalogoscanales.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{06E1EBBF-E800-4C4D-0F34-201068161946}|CargaCatalogosCanales\\CargaCatalogosCanales.csproj|solutionrelative:cargacatalogoscanales\\cargacatalogoscanales.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
       "AbsoluteMoniker": "D:0:0:{06E1EBBF-E800-4C4D-0F34-201068161946}|CargaCatalogosCanales\\CargaCatalogosCanales.csproj|c:\\users\\alexi\\documents\\github\\catalogo_analistai\\cargacatalogoscanales\\cargacatalogoscanales\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{06E1EBBF-E800-4C4D-0F34-201068161946}|CargaCatalogosCanales\\CargaCatalogosCanales.csproj|solutionrelative:cargacatalogoscanales\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{06E1EBBF-E800-4C4D-0F34-201068161946}|CargaCatalogosCanales\\CargaCatalogosCanales.csproj|c:\\users\\alexi\\documents\\github\\catalogo_analistai\\cargacatalogoscanales\\cargacatalogoscanales\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{06E1EBBF-E800-4C4D-0F34-201068161946}|CargaCatalogosCanales\\CargaCatalogosCanales.csproj|solutionrelative:cargacatalogoscanales\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{06E1EBBF-E800-4C4D-0F34-201068161946}|CargaCatalogosCanales\\CargaCatalogosCanales.csproj|c:\\users\\alexi\\documents\\github\\catalogo_analistai\\cargacatalogoscanales\\cargacatalogoscanales\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{06E1EBBF-E800-4C4D-0F34-201068161946}|CargaCatalogosCanales\\CargaCatalogosCanales.csproj|solutionrelative:cargacatalogoscanales\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,12 +26,12 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "CargaCatalogosCanales",
+              "DocumentIndex": 2,
+              "Title": "CargaCatalogosCanales.csproj",
               "DocumentMoniker": "C:\\Users\\alexi\\Documents\\GitHub\\Catalogo_analistaI\\CargaCatalogosCanales\\CargaCatalogosCanales\\CargaCatalogosCanales.csproj",
               "RelativeDocumentMoniker": "CargaCatalogosCanales\\CargaCatalogosCanales.csproj",
               "ToolTip": "C:\\Users\\alexi\\Documents\\GitHub\\Catalogo_analistaI\\CargaCatalogosCanales\\CargaCatalogosCanales\\CargaCatalogosCanales.csproj",
@@ -43,7 +43,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\alexi\\Documents\\GitHub\\Catalogo_analistaI\\CargaCatalogosCanales\\CargaCatalogosCanales\\Program.cs",
               "RelativeDocumentMoniker": "CargaCatalogosCanales\\Program.cs",
@@ -51,25 +51,24 @@
               "RelativeToolTip": "CargaCatalogosCanales\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-30T00:51:23.797Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-09-30T00:51:23.797Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "Form1.cs",
               "DocumentMoniker": "C:\\Users\\alexi\\Documents\\GitHub\\Catalogo_analistaI\\CargaCatalogosCanales\\CargaCatalogosCanales\\Form1.cs",
               "RelativeDocumentMoniker": "CargaCatalogosCanales\\Form1.cs",
               "ToolTip": "C:\\Users\\alexi\\Documents\\GitHub\\Catalogo_analistaI\\CargaCatalogosCanales\\CargaCatalogosCanales\\Form1.cs",
               "RelativeToolTip": "CargaCatalogosCanales\\Form1.cs",
-              "ViewState": "AgIAAJkAAAAAAAAAAAAAAKoAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAACwCAAAAAAAAAAAQwEICAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-09-30T00:41:25.799Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "Form1.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\alexi\\Documents\\GitHub\\Catalogo_analistaI\\CargaCatalogosCanales\\CargaCatalogosCanales\\Form1.cs",
               "RelativeDocumentMoniker": "CargaCatalogosCanales\\Form1.cs",

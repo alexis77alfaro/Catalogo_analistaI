@@ -13,7 +13,11 @@ public partial class Form1 : Form
 
     public Form1()
     {
+
+
         InitializeComponent();
+
+        this.FormClosing += Form1_FormClosing;
     }
 
     // ============================================================
@@ -86,8 +90,8 @@ public partial class Form1 : Form
     // ============================================================
 
     private async void GuardarDatos_Click(
-        object? sender,
-        EventArgs e)
+      object? sender,
+      EventArgs e)
     {
         if (!ValidarNombreArchivo() ||
             _catalogoCargado is null)
@@ -117,23 +121,47 @@ public partial class Form1 : Form
                         _nombreArchivoTextBox.Text.Trim(),
                         registros));
 
-            MessageBox.Show(
-                this,
-                $"Se guardaron {resultado.CantidadRegistros} " +
-                "registros y se actualizó la bitácora.",
-                Text,
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information);
+            /*
+             * validacion para mostrar mensaje ver si desea limpar la pantalla o no, si el resultado es exitoso
+             */
 
-            LimpiarFormularioSinConfirmacion();
+            DialogResult respuesta =
+                MessageBox.Show(
+                    this,
+                    $"Se guardaron correctamente " +
+                    $"{resultado.CantidadRegistros} registro(s) " +
+                    "y se actualizó la bitácora.\n\n" +
+                    "¿Desea limpiar la pantalla?",
+                    Text,
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+
+            if (respuesta == DialogResult.Yes)
+            {
+                LimpiarFormularioSinConfirmacion();
+            }
+            else
+            {
+                CambiarEstado(
+                    $"Datos guardados correctamente. " +
+                    $"{resultado.CantidadRegistros} registro(s) " +
+                    "permanecen visibles en pantalla.");
+            }
         }
-        catch
+        catch (InvalidDataException ex)
         {
             MostrarError(
-                "No fue posible guardar los datos. " +
-                "Consulte la bitácora para revisar el resultado.");
+                "El archivo no es válido o está mal estructurado.\n\n" +
+                ex.Message);
+        }
+        catch (Exception)
+        {
+            MostrarError(
+                "No fue posible cargar el archivo. " +
+                "Verifique el formato e inténtelo nuevamente.");
         }
     }
+
 
     // ============================================================
     // EXPORTAR CATÁLOGOS
@@ -188,9 +216,10 @@ public partial class Form1 : Form
                 return;
             }
 
-            // ========================================================
-            // 3. OBTENER NOMBRE DEL ARCHIVO DE ORIGEN
-            // ========================================================
+            /*
+             * 
+             * aca se obtiene el nombre del archivo de origen para mostrarlo en el mensaje final
+             */
 
             string nombreArchivoOrigen =
                 _nombreArchivoTextBox.Text.Trim();
@@ -266,17 +295,13 @@ public partial class Form1 : Form
                     UseShellExecute = true
                 });
 
-            // ========================================================
-            // 9. ACTUALIZAR ESTADO
-            // ========================================================
-
+            
             CambiarEstado(
                 $"Reporte generado correctamente. " +
                 $"{registros.Count} registro(s) exportado(s).");
 
-            // ========================================================
-            // 10. MENSAJE FINAL
-            // ========================================================
+            
+            
 
             MessageBox.Show(
                 this,
@@ -529,9 +554,29 @@ public partial class Form1 : Form
             mensaje;
     }
 
-    // ============================================================
-    // MOSTRAR ERROR
-    // ============================================================
+
+
+    private void Form1_FormClosing(
+      object? sender,
+      FormClosingEventArgs e)
+    {
+        DialogResult respuesta =
+            MessageBox.Show(
+                this,
+                "¿Está seguro que desea cerrar el formulario?",
+                "Confirmar cierre",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+        if (respuesta == DialogResult.Yes)
+        {
+            e.Cancel = false;
+        }
+        else
+        {
+            e.Cancel = true;
+        }
+    }
 
     private void MostrarError(
         string mensaje)
