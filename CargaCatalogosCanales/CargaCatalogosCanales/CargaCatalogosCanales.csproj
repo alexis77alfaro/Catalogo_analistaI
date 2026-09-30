@@ -14,4 +14,10 @@
     <PackageReference Include="MySqlConnector" Version="2.4.0" />
   </ItemGroup>
 
+	<ItemGroup>
+		<None Update="Recursos\PLANTILLA_REPORTE_CANALES.xlsx">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
 </Project>

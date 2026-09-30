@@ -2,6 +2,7 @@ using CargaCatalogosCanales.Entidades;
 using CargaCatalogosCanales.Negocio;
 using CargaCatalogosCanales.Utilidades;
 using System.Diagnostics;
+using System.IO;
 
 namespace CargaCatalogosCanales;
 
@@ -135,12 +136,12 @@ public partial class Form1 : Form
     }
 
     // ============================================================
-    // EXPORTAR CATÁLOGO
+    // EXPORTAR CATÁLOGOS
     // ============================================================
 
     private async void ExportarCatalogos_Click(
-     object? sender,
-     EventArgs e)
+        object? sender,
+        EventArgs e)
     {
         if (_catalogoCargado is null)
         {
@@ -153,7 +154,7 @@ public partial class Form1 : Form
         try
         {
             // ========================================================
-            // 1. OBTENER LOS REGISTROS DEL DATAGRIDVIEW
+            // 1. OBTENER REGISTROS DEL DATAGRIDVIEW
             // ========================================================
 
             List<RegistroCatalogo> registros =
@@ -165,31 +166,27 @@ public partial class Form1 : Form
             }
 
             // ========================================================
-            // 2. SELECCIONAR LA PLANTILLA EXCEL
+            // 2. BUSCAR PLANTILLA DENTRO DEL PROYECTO
             // ========================================================
 
-            using OpenFileDialog plantillaDialog = new()
+            string rutaPlantilla =
+                Path.Combine(
+                    AppContext.BaseDirectory,
+                    "Recursos",
+                    "PLANTILLA_REPORTE_CANALES.xlsx");
+
+            if (!File.Exists(rutaPlantilla))
             {
-                Title = "Seleccione la plantilla de reporte",
+                MostrarError(
+                    "No se encontró la plantilla de exportación.\n\n" +
+                    "Archivo requerido:\n" +
+                    "PLANTILLA_REPORTE_CANALES.xlsx\n\n" +
+                    $"Ruta buscada:\n{rutaPlantilla}\n\n" +
+                    "Verifique que la plantilla exista dentro de " +
+                    "la carpeta Recursos de la aplicación.");
 
-                Filter =
-        "Archivos Excel (*.xlsx)|*.xlsx|" +
-        "Todos los archivos (*.*)|*.*",
-
-                InitialDirectory = @"C:\subir_archivos",
-
-                CheckFileExists = true,
-
-                Multiselect = false
-            };
-
-            if (plantillaDialog.ShowDialog(this) != DialogResult.OK)
-            {
                 return;
             }
-
-            string rutaPlantilla =
-                plantillaDialog.FileName;
 
             // ========================================================
             // 3. OBTENER NOMBRE DEL ARCHIVO DE ORIGEN
@@ -208,44 +205,48 @@ public partial class Form1 : Form
             }
 
             // ========================================================
-            // 4. SELECCIONAR UBICACIÓN DEL REPORTE
+            // 4. VALIDAR RUTA DE EXPORTACIÓN
+            // ========================================================
+
+            string carpetaReporte =
+                @"C:\Reportes_canales";
+
+            if (!Directory.Exists(carpetaReporte))
+            {
+                MostrarError(
+                    "La ruta de exportación no está creada.\n\n" +
+                    $"Ruta requerida:\n{carpetaReporte}\n\n" +
+                    "Por favor, cree la carpeta o verifique que " +
+                    "el nombre de la ruta sea correcto.");
+
+                return;
+            }
+
+            // ========================================================
+            // 5. GENERAR NOMBRE DEL REPORTE
             // ========================================================
 
             string nombreReporte =
                 $"{DateTime.Now:yyyyMMdd}_reportes_canales.xlsx";
 
-            using SaveFileDialog guardarDialog = new()
-            {
-                Title = "Seleccione dónde guardar el reporte",
-                Filter =
-                    "Archivo Excel (*.xlsx)|*.xlsx",
-                FileName = nombreReporte,
-                AddExtension = true,
-                DefaultExt = "xlsx",
-                OverwritePrompt = false
-            };
-
-            if (guardarDialog.ShowDialog(this) != DialogResult.OK)
-            {
-                return;
-            }
-
             string rutaSalida =
-                guardarDialog.FileName;
+                Path.Combine(
+                    carpetaReporte,
+                    nombreReporte);
 
             // ========================================================
-            // 5. EVITAR SOBRESCRIBIR
+            // 6. EVITAR SOBRESCRIBIR
             // ========================================================
 
             rutaSalida =
                 ObtenerRutaDisponible(rutaSalida);
 
+            // ========================================================
+            // 7. GENERAR REPORTE
+            // ========================================================
+
             CambiarEstado(
                 "Generando reporte Excel...");
-
-            // ========================================================
-            // 6. GENERAR EXCEL
-            // ========================================================
 
             await Task.Run(() =>
                 ExportadorExcel.GenerarReporte(
@@ -255,7 +256,7 @@ public partial class Form1 : Form
                     nombreArchivoOrigen));
 
             // ========================================================
-            // 7. ABRIR EXCEL AUTOMÁTICAMENTE
+            // 8. ABRIR EXCEL AUTOMÁTICAMENTE
             // ========================================================
 
             Process.Start(
@@ -266,12 +267,16 @@ public partial class Form1 : Form
                 });
 
             // ========================================================
-            // 8. MENSAJE FINAL
+            // 9. ACTUALIZAR ESTADO
             // ========================================================
 
             CambiarEstado(
                 $"Reporte generado correctamente. " +
                 $"{registros.Count} registro(s) exportado(s).");
+
+            // ========================================================
+            // 10. MENSAJE FINAL
+            // ========================================================
 
             MessageBox.Show(
                 this,
@@ -423,7 +428,7 @@ public partial class Form1 : Form
     }
 
     // ============================================================
-    // MOSTRAR REGISTROS EN EL DATAGRIDVIEW
+    // MOSTRAR REGISTROS EN DATAGRIDVIEW
     // ============================================================
 
     private void MostrarRegistros(
